@@ -1,13 +1,21 @@
-from config import *
+import config
 import tweepy as tw
 
-auth = tw.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
-api = tw.API(auth, wait_on_rate_limit=True)
+def main():
+    auth = tw.OAuthHandler(config.CONSUMER_KEY, config.CONSUMER_SECRET)
+    auth.set_access_token(config.ACCESS_TOKEN, config.ACCESS_TOKEN_SECRET)
 
-search_words = "the"
+    api = tw.API(auth)
 
-tweets = tw.Cursor(api.search, q=search_words, lang="en").items(5)
+    tweets = api.search(q='gaming', lang='en')[0]
 
-for tweet in tweets:
-    print(tweet.text)
+    print(tweets)
+
+    # tweets = tw.Cursor(api.search, q='#', lang='en').items(1)
+
+    # for tweet in tweets:
+    #     print(tweet.text)
+    #     print('-----------------------')
+
+if __name__ == '__main__':
+    main()

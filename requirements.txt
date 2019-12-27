@@ -1,2 +1,3 @@
 tweepy
 tensorflow
+mysql-connector-python
