@@ -105,10 +105,12 @@ class Listener(tw.StreamListener):
         print(status)
 
 def get_data():
+    print('receiving data')
+
     auth = tw.OAuthHandler(config.CONSUMER_KEY, config.CONSUMER_SECRET)
     auth.set_access_token(config.ACCESS_TOKEN, config.ACCESS_TOKEN_SECRET)
 
-    stream = tw.Stream(auth, Listener(time_limit=1000), lang='en', tweet_mode='extended')
+    stream = tw.Stream(auth, Listener(time_limit=config.GET_DATA_TIME_LIMIT), lang='en', tweet_mode='extended')
     stream.filter(track=['a', 'the', 'i', 'you', 'u'], languages=['en'])
 
     print('received data')
