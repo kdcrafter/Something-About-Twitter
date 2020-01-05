@@ -22,7 +22,7 @@ def get_vocab():
     tweets = cursor.fetchall()
 
     for tweet in tweets:
-        words = tweet[0].strip().split()
+        words = tweet[0].strip().split() #tweet[0] because tweet is a tuple
         for word in words:
             vocab[' '.join(word)] += 1 #stored as a spaced string to make replacing text easier
 
